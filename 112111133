@@ -1,0 +1,20 @@
+const products = [
+  { name: "keyboard", stock: 25 },
+  { name: "mouse", stock: 5 },
+  { name: "monitor", stock: 8 },
+  { name: "usb cable", stock: 40 }
+];
+//取得低庫存商品清單
+// 商品陣列，每個元素包含 { name, stock }
+function getLowStock(products) {
+ //宣告一個新的陣列
+ const lowStockItems = products
+ //篩選出少於10的商品
+ .filter(item => item.stock<10)
+ //取出名稱name
+ .map(item => item.name);
+ //顯示結果
+ console.log("庫存少於10的商品", lowStockItems);
+}
+//執行結果
+getLowStock(products);
