@@ -43,12 +43,22 @@ http.createServer((req, res) => {
   let fileOtherFile = '';
 
   // Switch根據不同路由要寫的部分
+  switch (req.url) {
+    case '/':
+      filePath = '/index.ejs';
+      break;
+    case '/calculator':
+      filePath = '/index2.ejs';
+      break;
+    default:
+      filePath = req.url
+      fileOtherFile = filePath;
+
+  }
 
 
 
 
-
-  
 
   // ==========================================
   // 步驟 2: 判斷文件類型（提取副檔名）
@@ -179,12 +189,24 @@ http.createServer((req, res) => {
 
         // 當靜態資源載入失敗時（例如：請求不存在的文件或網址）
         // 不直接回傳錯誤訊息，而是顯示友善的 404 錯誤頁面（index3.ejs）
+        fs.readFile(('.' + '/index3.ejs'), 'utf8', (err, template) => {
+          const html = ejs.render(template);
+
+          // 設定 HTTP 回應標頭
+          // 狀態碼 200: OK（請求成功）
+          // Content-Type: 告訴瀏覽器這是 HTML 文件，使用 UTF-8 編碼
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+
+          // 將渲染完成的 HTML 發送給客戶端（瀏覽器）
+          res.end(html);
+
+        });
 
         // 設定 HTTP 狀態碼 404（找不到資源）
-        res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+        //res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
 
         // 向客戶端發送 404 錯誤訊息
-        res.end('404 - 找不到文件：');
+        //res.end('404 - 找不到文件：');
 
       } else {
         // ------------------------------------------
@@ -208,14 +230,14 @@ http.createServer((req, res) => {
     });
   }
 
-// ==========================================
-// 啟動伺服器並開始監聽請求
-// ==========================================
+  // ==========================================
+  // 啟動伺服器並開始監聽請求
+  // ==========================================
 
-// .listen() 方法啟動伺服器並監聽指定的端口
-// 參數說明：
-//   3000: 端口號（Port），伺服器將在此端口接收請求
-//   回調函數: 伺服器成功啟動後執行的函數
+  // .listen() 方法啟動伺服器並監聽指定的端口
+  // 參數說明：
+  //   3000: 端口號（Port），伺服器將在此端口接收請求
+  //   回調函數: 伺服器成功啟動後執行的函數
 }).listen(3000, () => {
 
   // 在終端機（控制台）輸出訊息，告知開發者伺服器已啟動

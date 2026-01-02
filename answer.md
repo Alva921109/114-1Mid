@@ -11,61 +11,70 @@
 
 1. a.
 
-Ans: 
-![alt text](image-1.png)
-說明:
-//取得低庫存商品清單
-//商品陣列，每個元素包含 { name, stock }
-//name = 項目, stock = 庫存 
-//宣告名為getLowStock的函式
-function getLowStock(products) {
- //宣告一個新的陣列
- const lowStockItems = products
- //篩選出少於10的商品
- .filter(item => item.stock<10)
- //取出名稱name('mouse', 'monitor')
- .map(item => item.name);
- //顯示結果到終端機
- console.log("庫存少於10的商品", lowStockItems);
-}
-//執行結果
-getLowStock(products);
+Ans:
+宣告一個陣列，裡面每個元素都是物件
+
 
 
 
 1. b.
 
 Ans:
+程式碼:
+![alt text](image-9.png)
+執行結果:
+![alt text](image-10.png)
 
-<!-- 請撰寫時，最後一句話再寫一次 -->
+
 
 
 1. c.
 
 Ans:
+程式碼:
+![alt text](image-11.png)
+執行結果:
+![alt text](image-12.png)
 
-<!--  請撰寫時，第一句話再寫一次  -->
+
 
 2. a.
 
 Ans:
+程式碼:
+![alt text](image.png)
+執行結果:
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
 
-<!--  請撰寫時，第一句話再寫一次  -->
+
+
 
 2. b.
 
 Ans:
+程式碼:
+![alt text](image-4.png)
+執行結果:
+![alt text](image-5.png)
+![alt text](image-6.png)
 
-<!--  請撰寫時，第一句話再寫一次  -->
+
 
 2. c.
 
 Ans:
+程式碼:
+![alt text](image-7.png)
+執行結果:
+![alt text](image-8.png)
 
-<!--  請撰寫時，第一句話和最後一句再寫一次  -->
+
 
 2. d.
 
 Ans:
+執行兩次 or 三次
 
 

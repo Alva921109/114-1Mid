@@ -6,6 +6,8 @@
 //  updateStock - 批次更新商品庫存
 // ==========================================
 
+const { name } = require("ejs");
+
 // ==========================================
 //  取得低庫存商品清單
 // ==========================================
@@ -21,10 +23,14 @@
  *   輸出: ["mouse"]
  */
 function getLowStock(products) {
- 
+  let container = [];
+  for (var i = 0; i < products.length; i++) {
+    if (products[i].stock < 10) {
+      container.push(products[i].name);
+    }
+  }
+  return container;
 }
-
-
 // ==========================================
 //  批次更新商品庫存
 // ==========================================
@@ -43,7 +49,16 @@ function getLowStock(products) {
  *   結果: [{ name: "mouse", stock: 15 }]
  */
 function updateStock(products, updates) {
-  
+  var result = [];
+  for (var i = 0; i < products.length; i++) {
+    var ObjectName = products[i].name;
+    if (typeof updates[ObjectName] === "undefined") {
+      result.push({ name: products[i].name, stock: products[i].stock });
+    } else {
+      result.push({ name: products[i].name, stock: updates[ObjectName] });
+    }
+  }
+  return result;
 }
 
 
@@ -131,7 +146,7 @@ console.log("==========================================");
 
 // 步驟 1: 找出低庫存商品
 const lowStock = getLowStock(products);
-console.log("步驟 1 - 低庫存商品：", lowStock);
+console.log("步驟 1  低庫存商品：", lowStock);
 
 // 步驟 2: 為低庫存商品補貨（設定庫存為 50）
 const restockUpdates = {};
